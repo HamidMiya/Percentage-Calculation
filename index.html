@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Percentage and Grade Calculator</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ffefba, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    animation: glitter 2s infinite alternate;
+}
+
+@keyframes glitter {
+    0% { box-shadow: 0 0 5px #FFD700; }
+    100% { box-shadow: 0 0 15px #FFD700; }
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #FF6347;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-size: 1.2em;
+    color: #5F6368;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button {
+    background-color: #FF6347;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e55339;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exam Percentage and Grade Calculator</h1>
+        <form id="calculator-form">
+            <label for="obtained-marks">Obtained Marks:</label>
+            <input type="number" id="obtained-marks" required>
+            
+            <label for="total-marks">Total Marks:</label>
+            <input type="number" id="total-marks" required>
+            
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+
+document.getElementById('calculator-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let obtainedMarks = parseFloat(document.getElementById('obtained-marks').value);
+    let totalMarks = parseFloat(document.getElementById('total-marks').value);
+
+    if (!isNaN(obtainedMarks) && !isNaN(totalMarks) && totalMarks > 0) {
+        let percentage = (obtainedMarks / totalMarks) * 100;
+        let grade;
+
+        switch (true) {
+            case (percentage >= 80):
+                grade = 'A1';
+                break;
+            case (percentage >= 70):
+                grade = 'A';
+                break;
+            case (percentage >= 60):
+                grade = 'B';
+                break;
+            case (percentage >= 50):
+                grade = 'C';
+                break;
+            default:
+                grade = 'Fail / Try Again';
+        }
+
+        document.getElementById('result').innerHTML = `Percentage: ${percentage.toFixed(2)}%<br>Grade: ${grade}`;
+    } else {
+        document.getElementById('result').innerHTML = 'Please enter valid numbers.';
+    }
+});
+// Made by 197950 M. Hamid Miya
+    </script>
+</body>
+</html>
